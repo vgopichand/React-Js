@@ -43,6 +43,7 @@ jobs:
       - run: exit 1
       - name: fail others
         if: success()
+        run: echo simple test
       - name: simulate run
         run: sleep 120
         
