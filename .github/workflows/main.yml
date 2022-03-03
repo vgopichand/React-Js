@@ -39,7 +39,11 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-      
+        
+      - run: exit 1
+      - name: fail others
+        if: success()
+        run: echo simple test
       - name: simulate run
         run: sleep 120
         
@@ -63,5 +67,33 @@ jobs:
           echo test, and deploy your project.
       
       - name: simulate run
+        run: sleep 10
+      
+      - name: simulate run
+        if: success()
         run: sleep 120
+  post-first-job:
+        runs-on: ubuntu-latest
+        if: ${{ failure() }}
+        needs:
+            - build
+        steps:
+            - run: echo ${{ github.actions }}
+            - name: Cancel current workflow run
+              uses: actions/github-script@v4
+              with:
+                  script: |
+                      console.log(github.actions)
+            - name: script
+              uses: actions/github-script@v4
+              with:
+                  script: |
+                    const resp = await github.actions.listJobsForWorkflowRun({
+                                                                    owner: context.repo.owner,
+                                                                    repo: context.repo.repo,
+                                                                    run_id: context.runId,
+                                                                  })
+                    console.log(resp)
+                      
+            
         
