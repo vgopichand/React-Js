@@ -67,3 +67,19 @@ jobs:
       - name: simulate run
         run: sleep 120
         
+  post-first-job:
+        runs-on: ubuntu-latest
+        if: ${{ failure() }}
+        needs:
+            - build
+        steps:
+            - name: Cancel current workflow run
+              uses: actions/github-script@v4
+              with:
+                  script: |
+                      github.actions.cancelWorkflowRun({
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          run_id: context.runId
+                      })
+        
