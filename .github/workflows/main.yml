@@ -67,7 +67,7 @@ jobs:
           echo test, and deploy your project.
       
       - name: simulate run
-        run: sleep 30
+        run: sleep 6
       
       - name: simulate run
         if: success()
