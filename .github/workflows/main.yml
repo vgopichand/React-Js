@@ -67,22 +67,9 @@ jobs:
           echo test, and deploy your project.
       
       - name: simulate run
-        run: sleep 6
+        run: sleep 10
       
       - name: simulate run
         if: success()
         run: sleep 120
-        
-  post-first-job:
-        runs-on: ubuntu-latest
-        if: ${{ failure() }}
-        needs:
-            - build
-        steps:
-            - run: echo ${{ github.actions }}
-            - name: Cancel current workflow run
-              uses: actions/github-script@v4
-              with:
-                  script: |
-                      console.log(github.actions)
         
