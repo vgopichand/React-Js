@@ -19,6 +19,7 @@ concurrency:
   cancel-in-progress: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+
 jobs:
   # This workflow contains a single job called "build"
   build:
@@ -34,8 +35,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         
       - uses: VGopichand/React-Js/.github/workflows/job1.yml@main
-        if: ${{github.matrix.workflow == job1}}
+        if: ${{ matrix.workflow == job1 }}
         
       - uses: VGopichand/React-Js/.github/workflows/job2.yml@main
-        if: ${{github.matrix.workflow == job2}}
+        if: ${{ matrix.workflow == job2 }}
         
