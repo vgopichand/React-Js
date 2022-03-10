@@ -3,9 +3,14 @@
 name: Job1
 
 # Controls when the workflow will run
-on: 
-  workflow_call:
+on:
+  workflow_dispatch:
 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  
   # Allows you to run this workflow manually from the Actions tab
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
