@@ -9,13 +9,13 @@ on:
     branches:
       - main
       - develope
-      - 'release-[0-9]+.[0-9]+*'
+      - 'release-*'
       
   pull_request:
     branches:
       - main
       - develope
-      - 'release-[0-9]+.[0-9]+*'
+      - 'release-*'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
